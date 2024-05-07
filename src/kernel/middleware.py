@@ -11,6 +11,9 @@ def addStaticFolder(response, route, folder):
     addMiddleware(response, route, lambda response, server:  server_static(response, server, folder, route))
 
 def server_static(response, server, folder, route):
+    if server["method"] != "GET":
+        throw404(response)
+        return False
     path_requested = server["path"]
     if path_requested == "":
         path_requested = "index.html"
