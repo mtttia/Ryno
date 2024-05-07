@@ -1,0 +1,5 @@
+/.mono
+/.vscode
+/req.txt
+src/kernel/__pycache__/
+src/__pycache__/
