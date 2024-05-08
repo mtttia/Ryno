@@ -1,10 +1,10 @@
 from src.kernel.response import set_protocol, set_body, set_status, set_status_message, add_header, add_middleware
-from src.kernel.middleware import addStaticFolder
+from src.kernel.middleware import addStaticFolder, addMiddleware
 
 def main(request, response):
     #define here your middleware
-    add_middleware(response, ("api", testMiddlewareBody))
-    add_middleware(response, ("api", testMiddlewareHeader))
+    addMiddleware(response, "api", testMiddlewareBody)
+    addMiddleware(response, "api", testMiddlewareHeader)
     addStaticFolder(response, "", "static")
     addStaticFolder(response, "css", "static/css")
     addStaticFolder(response, "js", "static/js")
@@ -20,8 +20,8 @@ def main(request, response):
 
 def testMiddlewareBody(response, server):
     set_body(response, "{\"name\":\"Jude\"}")
-    return response, True
+    return True
 
 def testMiddlewareHeader(response, server):
     add_header(response, "Content-Type", "application/json")
-    return response, True
+    return True

@@ -1,0 +1,129 @@
+\documentclass{article}
+\usepackage{listings}
+\usepackage{color}
+\usepackage{listings}
+\usepackage{xcolor}
+\usepackage{hyperref}
+
+
+% Definizione dei colori per il codice sorgente
+\definecolor{mygray}{rgb}{0.5,0.5,0.5}
+\definecolor{mygreen}{rgb}{0,0.6,0}
+\definecolor{myorange}{rgb}{1.0,0.4,0}
+
+\lstset{
+    language=Python,
+    basicstyle=\footnotesize\ttfamily,
+    keywordstyle=\color{blue},
+    commentstyle=\color{mygray},
+    stringstyle=\color{mygreen},
+    showstringspaces=false,
+    tabsize=2,
+    breaklines=true,
+    breakatwhitespace=false
+}
+
+\begin{document}
+\tableofcontents
+
+ 
+\title{Documentazione per Ryno}
+\author{Senni Mattia}
+\maketitle
+
+\section{Introduzione}
+Ryno è un semplice server HTTP in Python, ispirato al framework Express di Node.js. Questo documento fornisce una guida dettagliata su come utilizzare e comprendere Ryno, descrivendo le sue funzionalità, il funzionamento interno e le considerazioni aggiuntive.
+
+\section{Funzionalità}
+Di seguito sono elencate le principali funzionalità di Ryno:
+
+\begin{itemize}
+  \item \textbf{Middleware Based}: Ryno è middleware based, prendendo ispirazione dal framework Express di Node.js. Ciò significa che le funzioni di middleware possono essere aggiunte e utilizzate per gestire le richieste HTTP in modo modulare.
+  
+  \item \textbf{Servizio di file statici}: Ryno è in grado di servire file statici dal dispositivo. Il server può essere configurato per servire una specifica cartella e rendere disponibili i file in essa contenuti su una determinata route.
+  
+  \item \textbf{Sistema di routing interno}: Ryno ha un sistema di routing interno che consente di definire facilmente le rotte per gestire le richieste HTTP.
+  
+  \item \textbf{Gestione degli header e dello status della risposta}: Ryno gestisce correttamente gli header e lo status della risposta HTTP, consentendo un controllo completo sulla risposta inviata al client.
+  
+  \item \textbf{Supporto per la compressione gzip}: Ryno supporta la compressione gzip se supportata dal client, riducendo la dimensione dei file inviati e migliorando le prestazioni della rete.
+  
+  \item \textbf{Esempio di sito funzionante}: Ryno include un complesso sito web funzionante come esempio, che comprende immagini, font, video, HTML, CSS e JavaScript.
+  
+  \item \textbf{Supporto per le API}: Ryno supporta la creazione di API.
+\end{itemize}
+
+\section{Funzionamento}
+Ryno è progettato per essere semplice da utilizzare e configurare. Di seguito sono riportati i passaggi principali per utilizzare Ryno:
+
+\begin{enumerate}
+  \item \textbf{Installazione}: Per utilizzare Ryno, è necessario installare Python 3 sul proprio sistema. Dopodiché, è possibile scaricare e utilizzare il codice sorgente di Ryno dalla seguente repository \href{https://github.com/mtttia/Ryno}{Ryno python server su github}.
+  
+  \item \textbf{Configurazione}: Ryno può essere configurato modificando il file di configurazione presente in src/kernel/configuration.py, specificando la cartella contenente i file statici da servire e definendo le rotte per gestire le richieste HTTP.
+  
+  \item \textbf{Avvio del server}: Una volta configurato, è possibile avviare il server eseguendo il file server.py tramite python (`python server.py'). Il server si metterà in ascolto delle richieste HTTP in arrivo e risponderà di conseguenza.
+  
+  \item \textbf{Gestione delle richieste}: Ryno gestirà automaticamente le richieste HTTP in arrivo, instradandole alle funzioni di middleware appropriate e restituendo le risposte corrispondenti.
+  
+  \item \textbf{Middleware configurabili}: Tramite il file `src/main' è possibile aggiungere nuovi middleware su nuove route per o servire nuovi file statici o creare nuove API, seguendo gli esempi disponibili.
+\end{enumerate}
+\subsection{Requisiti}
+\begin{enumerate}
+    \item Python 3 installato
+\end{enumerate}
+
+\section{Funzionamento interno}
+Analisi struttura delle cartelle e dei file di Ryno:
+\begin{enumerate}
+    \item server.py: il file principale che avvia il server.
+    \item src/main.py: il file che contiene le funzioni di middleware e le rotte per gestire le richieste HTTP.
+    \item src/kernel/conf.py: il file di configurazione che definisce l'host e la porta della socket.
+    \item src/kernel/errors.py: funzioni utili da richiamare per restituire gli errori HTTP (in particolare sono gestiti il codice 404 e 500).
+    \item src/kernel/handle-request.py: prende le richieste in arrivo, scompatta l'oggetto request, carica i middleware, esegue i middleware della route specificata, incapsula seguendo il protocollo http la risposta, la invia al client e chiude la socket.
+    \item src/kernel/kernel.py: contiene il codice per aprire la socket e gestire tramite Thread le richieste in entrata.
+    \item src/kernel/middleware.py: contiene funzioni che facilitano la creazione di un middleware generico + la funzione per aggiungere un middleware che consente di gestire le risposte tramite risorse statiche e la relativa compressione tramite gzip se presente l'header apposito nella richiesta.
+    \item src/kernel/response.py: contiene dei metodi che facilitano il set dei parametri della risposta http (tramite un pattern che ricorda il Builder pattern).
+    \item static/**: contiene i file statici che il server può servire (configurato con una complessa landing page per dimostrare il funzionamento del server), data la dimensione dei suoi file è consigliata la visualizzazione del sito tramite un browser che supporti la compressione gzip.
+\end{enumerate}
+
+\subsection{Esempio di middleware}
+Creazione di un middleware per gestire le risposte custom (nell file src/main.py):
+\begin{lstlisting}
+    
+def main(request, response):
+    addMiddleware(response, "api", testMiddlewareBody)
+
+def testMiddlewareBody(response, server):
+    set_body(response, "{\"ping\":\"pong\"}")
+    add_header(response, "Content-Type", "application/json")
+    return True
+    
+\end{lstlisting}
+Analisi di request e response:
+Gli oggetti request e response contengono informazioni riguardo la richiesta e la risposta da dare.
+Il return True o False decreta se quello deve essere l'ultimo middleware da visualizzare oppure no
+\begin{lstlisting}
+    
+    response = {
+        "body": "",
+        "body_is_in_bytes": False,
+        "status": 200,
+        "status_message": "OK",
+        "protocol": "HTTP/1.1",
+        "headers": [], # contiene tutti gli header
+        "middleware": [] # contiene tutti i middleware ordinati  
+    }
+
+    request = {
+        "path": "index.html", # il file richiesto
+        "folder": "", # la cartella richiesta
+        "method": "GET", # il metodo usato per la richiesta
+        "get": {"page":1}, # i parametri get
+        "headers": {}, # tutti gli header della richiesta
+    }
+\end{lstlisting}
+Attualmente Ryno non gestisce la lettura del body della richiesta
+\section{Considerazioni aggiuntive}
+Ryno è progettato per essere flessibile e personalizzabile, consentendo agli sviluppatori di creare facilmente servizi web robusti e scalabili (partendo da un sito statico a delle funzionanti API).
+
+\end{document}

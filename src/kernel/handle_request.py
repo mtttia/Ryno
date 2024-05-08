@@ -6,7 +6,7 @@ from src.kernel.errors import throw404, throw500
 
 def handle_request(client_socket):
     # Receive the request from the client
-    request = client_socket.recv(1024).decode('utf-8')
+    request = client_socket.recv(configuration["max_request_buffer_size"]).decode('utf-8')
 
     # Parse the request to get the requested file path
     if(request == ''):  # If the request is empty, return
