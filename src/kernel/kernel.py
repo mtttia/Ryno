@@ -29,6 +29,8 @@ def start_server():
             
     except KeyboardInterrupt:
         print("\nServer stopped.")
+    except Exception as e:
+        print(f"An error occurred: {e}")
     finally:
         # Close the server socket
         server_socket.close()

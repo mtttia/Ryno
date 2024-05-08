@@ -19,6 +19,9 @@ def server_static(response, server, folder, route):
         path_requested = "index.html"
     if(route != ""):
         folder_requested = server["folder"].split(route)[1]
+        #if start with / delete the /
+        if len(folder_requested) > 0 and folder_requested[0] == "/":
+            folder_requested = folder_requested[1:]
     else: 
         folder_requested = server["folder"]
     file_path = os.path.join(folder, folder_requested, path_requested)

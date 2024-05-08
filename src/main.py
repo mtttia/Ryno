@@ -1,27 +1,22 @@
 from src.kernel.response import set_protocol, set_body, set_status, set_status_message, add_header, add_middleware
 from src.kernel.middleware import addStaticFolder, addMiddleware
+import json
 
 def main(request, response):
     #define here your middleware
-    addMiddleware(response, "api", testMiddlewareBody)
-    addMiddleware(response, "api", testMiddlewareHeader)
     addStaticFolder(response, "", "static")
-    addStaticFolder(response, "css", "static/css")
-    addStaticFolder(response, "js", "static/js")
-    addStaticFolder(response, "fonts", "static/fonts")
-    addStaticFolder(response, "images", "static/images")
-    addStaticFolder(response, "images/reviews", "static/images/reviews")
-    addStaticFolder(response, "images/slides", "static/images/slides")
-    addStaticFolder(response, "images/team", "static/images/team")
-    addStaticFolder(response, "videos", "static/videos")
+    addMiddleware(response, "request", testMiddlewareBody)
+    addMiddleware(response, "request", testMiddlewareHeader)
 
     return response
 
 
 def testMiddlewareBody(response, server):
-    set_body(response, "{\"name\":\"Jude\"}")
+    set_body(response, json.dumps(server))
     return True
 
 def testMiddlewareHeader(response, server):
     add_header(response, "Content-Type", "application/json")
+    set_status(response, 200)
+    set_status_message(response, "OK")
     return True

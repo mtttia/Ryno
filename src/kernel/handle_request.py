@@ -102,4 +102,4 @@ def handle_request(client_socket):
         client_socket.close()
 
 def isInPath(path, path_requested):
-    return path == path_requested
+    return path in path_requested
