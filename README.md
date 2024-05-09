@@ -1,13 +1,3 @@
-\
-\
-\
-\
-\
-\
-\
-\
-\
-&#8203;
 # <center>Ryno Simple Web Server in Python</center>
 ### <center>Relazione sul Progetto di Web Server Semplice</center>
 ### <center>Autore: Mattia Senni</center>
@@ -44,7 +34,7 @@
     * [4.2 Commento finale e Possibili Migliorie](#42-commento-finale-e-possibili-migliorie)
     * [4.3 Conclusioni](#43-conclusioni)
 
-## Parte 1: Introduzione e Obbiettivi
+# Parte 1: Introduzione e Obbiettivi
 
 ## Parte 1.1: Introduzione
 
