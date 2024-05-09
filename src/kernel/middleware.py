@@ -34,9 +34,10 @@ def server_static(response, server, folder, route):
         set_body(response, content)
         set_body_is_in_bytes(response, True)
         add_header(response, 'Content-Type', get_file_type(file_path))
+        return False
     else:
         throw404(response)
-        return False
+        return True
     
 def should_decode_utf8(file_path):
     return file_path.split('.')[-1] in ['html', 'css', 'js']

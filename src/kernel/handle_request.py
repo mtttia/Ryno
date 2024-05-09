@@ -76,30 +76,32 @@ def handle_request(client_socket):
     except Exception as e:
         throw500(response)
     finally: 
+        try:
 
-        if not atLeastOneMiddleware:
-            throw404(response)
+            if not atLeastOneMiddleware:
+                throw404(response)
 
-        add_header(response, 'Content-Length', len(get_body(response)))
+            add_header(response, 'Content-Length', len(get_body(response)))
 
-        response_text = f"{get_protocol(response)} {get_status(response)} {get_status_message(response)}\r\n"
+            response_text = f"{get_protocol(response)} {get_status(response)} {get_status_message(response)}\r\n"
 
-        #add all header
-        for header in get_headers(response):
-            response_text += f"{header[0]}: {header[1]}\r\n"
+            #add all header
+            for header in get_headers(response):
+                response_text += f"{header[0]}: {header[1]}\r\n"
 
-        
-        response_text += f"\r\n"
-        if(get_body_is_in_bytes(response)):
-            response_text = response_text.encode("utf-8") + get_body(response)
-        else:
-            response_text = response_text.encode("utf-8") + get_body(response).encode("utf-8")
+            
+            response_text += f"\r\n"
+            if(get_body_is_in_bytes(response)):
+                response_text = response_text.encode("utf-8") + get_body(response)
+            else:
+                response_text = response_text.encode("utf-8") + get_body(response).encode("utf-8")
 
-        # Send the response back to the client
-        client_socket.sendall(response_text)
-
-        # Close the client socket
-        client_socket.close()
+            # Send the response back to the client
+            client_socket.sendall(response_text)
+        except Exception as e:
+            print(f"Unexpected error occurred during request, {e}")
+        finally:
+            client_socket.close()
 
 def isInPath(path, path_requested):
     return path in path_requested

@@ -1,5 +1,5 @@
-from src.kernel.response import set_protocol, set_body, set_status, set_status_message, add_header, add_middleware
-from src.kernel.middleware import addStaticFolder, addMiddleware
+from src.kernel.response import set_protocol, set_body, set_status, set_status_message, add_header, add_middleware, set_body_is_in_bytes, get_body
+from src.kernel.middleware import addStaticFolder, addMiddleware, gzip_supported, compress_content
 import json
 
 def main(request, response):
@@ -7,7 +7,7 @@ def main(request, response):
     addStaticFolder(response, "", "static")
     addMiddleware(response, "request", testMiddlewareBody)
     addMiddleware(response, "request", testMiddlewareHeader)
-
+    addMiddleware(response, "request", compressMiddleware)
     return response
 
 
@@ -20,3 +20,10 @@ def testMiddlewareHeader(response, server):
     set_status(response, 200)
     set_status_message(response, "OK")
     return True
+
+def compressMiddleware(response, server):
+    if(gzip_supported(server)):
+        set_body(response, compress_content(get_body(response).encode("utf-8")))
+        add_header(response, 'Content-Encoding', 'gzip')
+        set_body_is_in_bytes(response, True)
+    return False

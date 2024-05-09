@@ -29,8 +29,10 @@ def start_server():
             
     except KeyboardInterrupt:
         print("\nServer stopped.")
+    except OSError:
+        port = configuration["PORT"]
+        print(f"Address {port} already in use, try change port in src/kernel/conf.py")
     except Exception as e:
         print(f"An error occurred: {e}")
     finally:
-        # Close the server socket
         server_socket.close()
