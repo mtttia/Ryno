@@ -94,7 +94,7 @@ Per garantire una maggiore efficienza e scalabilità, il server è in grado di g
 
 # Parte 3: Utilizzo del Web Server
 
-# 3.1 Utilizzo del Web Server
+## 3.1 Utilizzo del Web Server
 
 Il web server può essere utilizzato per ospitare siti web statici e gestire richieste HTTP di base. Per avviare il server, è sufficiente eseguire il file server.py tramite Python.
 Per una corretta esecuzione del server è necessario avere un versione di Python superiore alla 3, Il server è stato sviluppato e testato con Python v. 3.10.12, è quindi garantita la corretta esecuzione del server con questa versione di Python.
