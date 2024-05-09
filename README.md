@@ -29,10 +29,15 @@
     * [2.7 Gestione della Concorrenza](#27-gestione-della-concorrenza)
 - [Parte 3: Utilizzo del Web Server](#parte-3-utilizzo-del-web-server)
     * [3.1 Utilizzo del Web Server](#31-utilizzo-del-web-server)
-    + [Avvio del web server (bash)](#avvio-del-web-server--bash-)
-- [Parte 4: Conclusioni e possibili migliore](#parte-4-conclusioni-e-possibili-migliore)
-    * [4.2 Commento finale e Possibili Migliorie](#42-commento-finale-e-possibili-migliorie)
-    * [4.3 Conclusioni](#43-conclusioni)
+    * [3.2 Avvio del web server (bash)](#32-avvio-del-web-server-bash)
+- [Parte 4: Esempio di Utilizzo del Web Server](#parte-4-esempio-di-utilizzo-del-web-server)
+    * [4.1 Introduzione](#41-introduzione)
+    * [4.2 Accesso al Sito Web Statico](#42-accesso-al-sito-web-statico)
+    * [4.3 Accesso all'API per le Richieste](#43-accesso-all-api-per-le-richieste)
+    * [4.4 Supporto per la Compressione Gzip](#44-supporto-per-la-compressione-gzip)
+- [Parte 5: Conclusioni e possibili migliore](#parte-5-conclusioni-e-possibili-migliore)
+    * [5.1 Commento finale e Possibili Migliorie](#51-commento-finale-e-possibili-migliorie)
+    * [5.2 Conclusioni](#52-conclusioni)
 
 # Parte 1: Introduzione e Obbiettivi
 
@@ -100,7 +105,7 @@ Il web server può essere utilizzato per ospitare siti web statici e gestire ric
 Per una corretta esecuzione del server è necessario avere un versione di Python superiore alla 3, Il server è stato sviluppato e testato con Python v. 3.10.12, è quindi garantita la corretta esecuzione del server con questa versione di Python.
 Una volta avviato, il server sarà in ascolto su una determinata porta (configurabile nel file conf.py) e sarà in grado di servire file statici e gestire richieste HTTP GET.
 
-## Avvio del web server (bash)
+## 3.2 Avvio del web server (bash)
 ```bash
 # assicurarsi di essere all'interno del progetto Ryno Simple web Server in Python
 # assicurarsi di avere una versione di python supportata (vedi punto 3.1)
@@ -108,9 +113,28 @@ python --version
 # mettere in esecuzione il server (una volta partito il server comunicherà su che porta gira), è possibile configurare la porta da /src/kernel/conf.py
 python server.py 
 ```
-# Parte 4: Conclusioni e possibili migliore
 
-## 4.2 Commento finale e Possibili Migliorie
+# Parte 4: Esempio di Utilizzo del Web Server
+
+## 4.1 Introduzione
+
+Per comprendere meglio il funzionamento del web server e le sue capacità, verrà fornito un esempio pratico di utilizzo. Il web server è in grado di servire sia pagine HTML e risorse statiche come file CSS, JavaScript, immagini JPEG, video MP4 e font, sia risposte API con formato JSON tramite richieste GET.
+
+## 4.2 Accesso al Sito Web Statico
+
+Dopo aver avviato il web server e collegandosi tramite un browser all'indirizzo del server, sarà possibile accedere al sito web statico. Navigando nella cartella radice `/`, si potrà visualizzare un sito web statico con le pagine HTML, i file CSS, i file JavaScript, le immagini JPEG, i video MP4 e i font.
+
+## 4.3 Accesso all'API per le Richieste
+
+Inoltre, è disponibile un endpoint API per visualizzare un esempio di risposta API con gestione degli header per il contenuto in formato JSON. Accedendo alla route `/request/`, sarà possibile visualizzare la risposta API che mostra i parametri della richiesta estratti dal pacchetto della richiesta HTTP.
+
+## 4.4 Supporto per la Compressione Gzip
+
+Entrambe le route, sia per il sito web statico che per l'API delle richieste, supportano la compressione Gzip se nella richiesta HTTP è presente l'header `Accept-Encoding` che indica il supporto per la compressione.
+
+# Parte 5: Conclusioni e possibili migliore
+
+## 5.1 Commento finale e Possibili Migliorie
 
 Nonostante il web server soddisfi attualmente i requisiti specificati nell'assegnazione, ci sono alcune aree in cui potrebbe essere migliorato e ampliato:
 
@@ -118,6 +142,6 @@ Nonostante il web server soddisfi attualmente i requisiti specificati nell'asseg
 - **Sicurezza**: Potrebbero essere implementate misure di sicurezza aggiuntive per proteggere il server da attacchi comuni come attacchi DDoS e injection di codice.
 - **Logging e Monitoraggio**: Potrebbe essere aggiunta la funzionalità di logging per tenere traccia delle richieste in arrivo e delle attività del server. Inoltre, potrebbe essere implementato un sistema di monitoraggio per monitorare le prestazioni del server e identificare eventuali problemi o anomalie.
 
-## 4.3 Conclusioni
+## 5.2 Conclusioni
 
 Il progetto di sviluppo del web server è stata molto utile per testare e comprendere i concetti fondamentali della programmazione di reti e dei servizi web. Attraverso l'implementazione di un web server semplice in Python, è stato possibile testare le competenze pratiche nella gestione delle connessioni socket, delle richieste HTTP e della concorrenza.
