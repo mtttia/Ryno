@@ -119,18 +119,45 @@ python server.py
 ## 4.1 Introduzione
 
 Per comprendere meglio il funzionamento del web server e le sue capacità, verrà fornito un esempio pratico di utilizzo. Il web server è in grado di servire sia pagine HTML e risorse statiche come file CSS, JavaScript, immagini JPEG, video MP4 e font, sia risposte API con formato JSON tramite richieste GET.
+\
+Di default il server parte sulla porta 8080.
 
 ## 4.2 Accesso al Sito Web Statico
 
 Dopo aver avviato il web server e collegandosi tramite un browser all'indirizzo del server, sarà possibile accedere al sito web statico. Navigando nella cartella radice `/`, si potrà visualizzare un sito web statico con le pagine HTML, i file CSS, i file JavaScript, le immagini JPEG, i video MP4 e i font.
+\
+\
+Esempio di visualizzazione del sito web servito dal web server (Assumendo che il server sia stato eseguito dalla stessa macchina che lo testa, e che nel file conf.py la porta sia la 8080).
+```
+http://host_address:port/ #host_address è l'indirizzo del computer che mette in esecuzione il server, port è la porta indicata su conf.py
+http://localhost:8080/ #esempio con localhost e porta 8080
+```
+\
+![Esempio dal browser richiesta a risorse statiche](showcase/Example-static-request.png)
+
 
 ## 4.3 Accesso all'API per le Richieste
 
 Inoltre, è disponibile un endpoint API per visualizzare un esempio di risposta API con gestione degli header per il contenuto in formato JSON. Accedendo alla route `/request/`, sarà possibile visualizzare la risposta API che mostra i parametri della richiesta estratti dal pacchetto della richiesta HTTP.
+\
+\
+Esempio di visualizzazione del sito web servito dal web server (Assumendo che il server sia stato eseguito dalla stessa macchina che lo testa, e che nel file conf.py la porta sia la 8080).
+```
+http://host_address:port/request/ #host_address è l'indirizzo del computer che mette in esecuzione il server, port è la porta indicata su conf.py
+http://localhost:8080/request/ #esempio con localhost e porta 8080
+```
+\
+![Esempio dal browser richiesta a risorse API](showcase/Example-API-request.png)
+
 
 ## 4.4 Supporto per la Compressione Gzip
 
 Entrambe le route, sia per il sito web statico che per l'API delle richieste, supportano la compressione Gzip se nella richiesta HTTP è presente l'header `Accept-Encoding` che indica il supporto per la compressione.
+\
+\
+Come si può vedere dall'esempio sottostante il browser invia l'header `Accept-Encoding: gzip` e il server risponde con l'header `Content-Encoding: gzip` indicando che il contenuto è stato compresso con Gzip.
+\
+![Esempio dal browser header compression gzip](showcase/Example-gzip-encondig-header.png)
 
 # Parte 5: Conclusioni e possibili migliore
 

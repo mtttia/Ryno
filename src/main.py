@@ -4,7 +4,7 @@ import json
 
 def main(request, response):
     #define here your middleware
-    addStaticFolder(response, "", "static")
+    addStaticFolder(response, "", "static", [("Content-Language", "en-US")])
     addMiddleware(response, "request", testMiddlewareBody)
     addMiddleware(response, "request", testMiddlewareHeader)
     addMiddleware(response, "request", compressMiddleware)

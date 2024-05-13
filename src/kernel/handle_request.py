@@ -80,7 +80,7 @@ def handle_request(client_socket):
 
             if not atLeastOneMiddleware:
                 throw404(response)
-
+                
             add_header(response, 'Content-Length', len(get_body(response)))
 
             response_text = f"{get_protocol(response)} {get_status(response)} {get_status_message(response)}\r\n"

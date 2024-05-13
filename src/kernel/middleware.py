@@ -7,10 +7,10 @@ from io import BytesIO
 def addMiddleware(response, route, middleware):
     add_middleware(response, (route, middleware))
 
-def addStaticFolder(response, route, folder):
-    addMiddleware(response, route, lambda response, server:  server_static(response, server, folder, route))
+def addStaticFolder(response, route, folder, headers = [] ):
+    addMiddleware(response, route, lambda response, server:  server_static(response, server, folder, route, headers))
 
-def server_static(response, server, folder, route):
+def server_static(response, server, folder, route, headers = []):
     if server["method"] != "GET":
         throw404(response)
         return False
@@ -34,6 +34,10 @@ def server_static(response, server, folder, route):
         set_body(response, content)
         set_body_is_in_bytes(response, True)
         add_header(response, 'Content-Type', get_file_type(file_path))
+
+        for header in headers:
+            add_header(response, header[0], header[1])
+
         return False
     else:
         throw404(response)
