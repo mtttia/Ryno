@@ -56,7 +56,7 @@ L'obiettivo principale del progetto era implementare un web server funzionante i
 
 ## Parte 1.3: Implementazione del Web Server
 
-Il web server è stato implementato utilizzando il linguaggio Python e sfruttando le librerie standard per la gestione delle connessioni socket e delle richieste HTTP. Di seguito sono descritte brevemente le principali funzionalità implementate:
+Il web server è stato implementato utilizzando il linguaggio Python. Di seguito sono descritte brevemente le principali funzionalità implementate:
 
 - **Gestione delle Richieste**: Il server è in grado di gestire richieste HTTP GET di base, analizzando il metodo, il percorso richiesto e gli eventuali parametri GET inclusi nell'URL.
 - **Servizio dei File Statici**: È stato implementato un meccanismo per servire file statici come HTML, CSS, e immagini, garantendo una corretta risposta alle richieste dei client.
@@ -166,9 +166,9 @@ Come si può vedere dall'esempio sottostante il browser invia l'header `Accept-E
 Nonostante il web server soddisfi attualmente i requisiti specificati nell'assegnazione, ci sono alcune aree in cui potrebbe essere migliorato e ampliato:
 
 - **Supporto per altri metodi HTTP**: Attualmente, il server gestisce correttamente solamente richieste HTTP GET. Potrebbe essere esteso per supportare altri metodi HTTP come POST, PUT e DELETE (anche se tuttora è in grado di identificare con quale metodo viene eseguita la richiesta).
-- **Sicurezza**: Potrebbero essere implementate misure di sicurezza aggiuntive per proteggere il server da attacchi comuni come attacchi DDoS e injection di codice.
+- **Sicurezza**: Potrebbero essere implementate misure di sicurezza aggiuntive per proteggere il server da attacchi comuni come attacchi DDoS.
 - **Logging e Monitoraggio**: Potrebbe essere aggiunta la funzionalità di logging per tenere traccia delle richieste in arrivo e delle attività del server. Inoltre, potrebbe essere implementato un sistema di monitoraggio per monitorare le prestazioni del server e identificare eventuali problemi o anomalie.
 
 ## 5.2 Conclusioni
 
-Il progetto di sviluppo del web server è stata molto utile per testare e comprendere i concetti fondamentali della programmazione di reti e dei servizi web. Attraverso l'implementazione di un web server semplice in Python, è stato possibile testare le competenze pratiche nella gestione delle connessioni socket, delle richieste HTTP e della concorrenza.
+Il progetto di sviluppo del web server è stato molto utile per testare e comprendere i concetti fondamentali della programmazione di reti e dei servizi web. Attraverso l'implementazione di un web server semplice in Python, è stato possibile testare le competenze pratiche nella gestione delle connessioni socket, delle richieste HTTP e della concorrenza.
