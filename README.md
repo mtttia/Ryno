@@ -33,7 +33,7 @@
 - [Parte 4: Esempio di Utilizzo del Web Server](#parte-4-esempio-di-utilizzo-del-web-server)
     * [4.1 Introduzione](#41-introduzione)
     * [4.2 Accesso al Sito Web Statico](#42-accesso-al-sito-web-statico)
-    * [4.3 Accesso all'API per le Richieste](#43-accesso-a-api-per-le-richieste)
+    * [4.3 Accesso a API per le Richieste](#43-accesso-a-api-per-le-richieste)
     * [4.4 Supporto per la Compressione Gzip](#44-supporto-per-la-compressione-gzip)
 - [Parte 5: Conclusioni e possibili migliore](#parte-5-conclusioni-e-possibili-migliore)
     * [5.1 Commento finale e Possibili Migliorie](#51-commento-finale-e-possibili-migliorie)
