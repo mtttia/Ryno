@@ -33,7 +33,7 @@
 - [Parte 4: Esempio di Utilizzo del Web Server](#parte-4-esempio-di-utilizzo-del-web-server)
     * [4.1 Introduzione](#41-introduzione)
     * [4.2 Accesso al Sito Web Statico](#42-accesso-al-sito-web-statico)
-    * [4.3 Accesso all'API per le Richieste](#43-accesso-all-api-per-le-richieste)
+    * [4.3 Accesso all'API per le Richieste](#43-accesso-a-api-per-le-richieste)
     * [4.4 Supporto per la Compressione Gzip](#44-supporto-per-la-compressione-gzip)
 - [Parte 5: Conclusioni e possibili migliore](#parte-5-conclusioni-e-possibili-migliore)
     * [5.1 Commento finale e Possibili Migliorie](#51-commento-finale-e-possibili-migliorie)
@@ -136,7 +136,7 @@ http://localhost:8080/ #esempio con localhost e porta 8080
 ![Esempio dal browser richiesta a risorse statiche](showcase/Example-static-request.png)
 
 
-## 4.3 Accesso all'API per le Richieste
+## 4.3 Accesso a API per le Richieste
 
 Inoltre, è disponibile un endpoint API per visualizzare un esempio di risposta API con gestione degli header per il contenuto in formato JSON. Accedendo alla route `/request/`, sarà possibile visualizzare la risposta API che mostra i parametri della richiesta estratti dal pacchetto della richiesta HTTP.
 \
