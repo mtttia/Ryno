@@ -30,7 +30,7 @@
 - [Parte 3: Utilizzo del Web Server](#parte-3-utilizzo-del-web-server)
     * [3.1 Utilizzo del Web Server](#31-utilizzo-del-web-server)
     * [3.2 Avvio del web server (bash)](#32-avvio-del-web-server-bash)
-- [Parte 4: Esempio di Utilizzo del Web Server](#parte-4-esempio-di-utilizzo-del-web-server)
+- [Parte 4: Accesso del Web Server](#parte-4-accesso-del-web-server)
     * [4.1 Introduzione](#41-introduzione)
     * [4.2 Accesso al Sito Web Statico](#42-accesso-al-sito-web-statico)
     * [4.3 Accesso a API per le Richieste](#43-accesso-a-api-per-le-richieste)
@@ -114,7 +114,7 @@ python --version
 python server.py 
 ```
 
-# Parte 4: Esempio di Utilizzo del Web Server
+# Parte 4: Accesso del Web Server
 
 ## 4.1 Introduzione
 
